@@ -494,9 +494,17 @@ font-size: 0.95em;
 vertical-align: top;
 }
 table.rulings th { background: var(--sand-light); color: var(--wood-dark); }
+@media (max-width: 768px) {
+.header-logo img {
+max-height: 130px;
+}
+}
 @media (max-width: 480px) {
 .rulebook { padding: 14px; }
 table.rulings th, table.rulings td { padding: 6px; font-size: 0.85em; }
+.header-logo img {
+max-height: 110px;
+}
 }
 </style>
 <div class="rulebook">
