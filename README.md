@@ -4,17 +4,7 @@
 
 A self-contained, mobile-friendly bingo site for watching Survivor 51 with friends. Every player gets a randomized 5x5 card of show-specific prompts, plus personal Winner, Jury, and Loser picks. Players click along in real time while the host confirms what actually happened each episode.
 
-Built with R Markdown. Renders to two static HTML pages: no server required.
-
-## Features
-
-- **Randomized cards** for each player: 21 prompt squares, a Winner pick, a Jury pick, a Loser pick, and a FREE space in the center
-- **Two kinds of marks**
-  - 🟡 **Claimed (yellow dauber):** click any square on your own card. Stored in your browser's `localStorage` only, so it is private and unofficial.
-  - 🟢 **Confirmed (green dauber):** set by the host in `data/marks.csv` and baked in at render time. Only confirmed marks count toward BINGO.
-- **Rule Book page** with definitions, scoring, and grey-area rulings
-- **Table of contents** that jumps to each player's card
-- **Responsive and print-friendly:** works on phones, and cards print in black and white
+Built with R Markdown. Renders to two static HTML pages.
 
 ## Project Structure
 
