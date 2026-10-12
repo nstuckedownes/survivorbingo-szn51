@@ -72,7 +72,7 @@ install.packages(c("rmarkdown", "htmltools"))
 
 ## Usage
 
-### 1. Generate the cards (once)
+### 1. Generate the cards (once to kick the season off)
 
 Knit `card_setup.Rmd`, or run:
 
@@ -82,16 +82,12 @@ rmarkdown::render("card_setup.Rmd")
 
 This writes `data/cards.rds`. The script uses `set.seed(314)`, so it is reproducible, but **changing the prompt list or the player list will change every card.** Only regenerate before the season starts.
 
-To add or remove players, edit the `players` vector in `card_setup.Rmd`, add the matching rows to `picks.csv`, and regenerate.
-
 ### 2. Build the site
 
 ```r
 rmarkdown::render("index.Rmd")
 rmarkdown::render("rules.Rmd")
 ```
-
-This produces `index.html` and `rules.html`. Both are self-contained and link to each other, so keep them in the same folder.
 
 ### 3. Confirm marks after each episode
 
@@ -109,7 +105,7 @@ Cards are rebuilt from the data on every render, so nothing else needs to change
 - A player in `cards.rds` has no matching row in `picks.csv`
 - A prompt ID in `marks.csv` does not exist in `prompts.csv`
 
-Also note that `data/marks.csv` IDs are read as text, so player names for the Winner, Jury, and Loser rows must match the card names exactly.
+Also note that `data/marks.csv` IDs are read as text, so player names for the Winner, Jury, and Loser rows must match the card names.
 
 ## Hosting
 
@@ -121,4 +117,7 @@ Claimed marks are tracked per browser, not per player, so nothing technically st
 
 ## Credits
 
-Created by Nicole Stucke-Downes.
+Nicole Stucke-Downes, PhD
+Ryan Downes, punkass
+Emma (Gregory) Casey, MA, RD
+Dylan Casey, dad
