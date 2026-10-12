@@ -97,10 +97,6 @@ Also note that `data/marks.csv` IDs are read as text, so player names for the Wi
 
 The output is plain static HTML, so it can be served from anywhere, such as GitHub Pages, Netlify, or a shared drive. Include the `images/` and `font/` folders alongside the HTML files so the logo and custom font load.
 
-## A Note on Fair Play
-
-Claimed marks are tracked per browser, not per player, so nothing technically stops you from clicking someone else's card. Please don't. Your tribe is watching.
-
 ## Credits
 
 Nicole Stucke-Downes, PhD
