@@ -9,7 +9,7 @@ Built with R Markdown. Renders to two static HTML pages.
 ## Project Structure
 
 ```
-.
+│
 ├── index.Rmd          # Main page: renders every player's card
 ├── rules.Rmd          # Rule Book page
 ├── card_setup.Rmd     # One-time script that generates data/cards.rds
