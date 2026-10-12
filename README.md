@@ -40,10 +40,6 @@ Built with R Markdown. Renders to two static HTML pages: no server required.
 - [Pandoc](https://pandoc.org/) (bundled with RStudio)
 - R packages: `rmarkdown`, `htmltools`
 
-```r
-install.packages(c("rmarkdown", "htmltools"))
-```
-
 ## Data Files
 
 ### `data/prompts.csv`
