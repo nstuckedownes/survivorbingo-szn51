@@ -99,7 +99,7 @@ The output is plain static HTML, so it can be served from anywhere, such as GitH
 
 ## Credits
 
-Nicole Stucke-Downes, PhD
-Ryan Downes, punkass
-Emma (Gregory) Casey, MA, RD
+Nicole Stucke-Downes, PhD;
+Ryan Downes, punkass;
+Emma (Gregory) Casey, MA, RD;
 Dylan Casey, dad
