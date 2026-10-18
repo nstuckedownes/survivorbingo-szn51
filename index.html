@@ -395,6 +395,8 @@ font-style: normal;
 --jungle-light: rgba(63, 107, 84, 0.22);
 --clay: #8C3A22;
 --clay-light: rgba(140, 58, 34, 0.22);
+--bingo: #2F6DB5;
+--bingo-light: rgba(47, 109, 181, 0.3);
 }
 
 body {
@@ -494,8 +496,11 @@ box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.2);
 width: 100%;
 max-width: 580px;
 margin: 0 auto;
-padding: 0 10px;
+--grid-pad: 10px;
+padding: 0 var(--grid-pad);
 box-sizing: border-box;
+position: relative;
+grid-auto-rows: 1fr; 
 }
 
 .cell {
@@ -602,6 +607,52 @@ color: transparent;
 font-size: 0;
 }
 
+.bingo-lines {
+position: absolute;
+top: 0;
+left: var(--grid-pad);
+width: calc(100% - 2 * var(--grid-pad));
+height: 100%;
+z-index: 5;
+pointer-events: none; 
+overflow: visible;
+filter: drop-shadow(0 1px 2px rgba(43, 36, 32, 0.35));
+animation: bingo-wipe 0.9s ease-out both;
+}
+.bingo-lines line {
+stroke: var(--bingo);
+stroke-width: 7;
+stroke-linecap: round;
+opacity: 0.85;
+vector-effect: non-scaling-stroke;
+}
+@keyframes bingo-wipe {
+from { clip-path: inset(-10px 100% -10px -10px); }
+to { clip-path: inset(-10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+.bingo-lines { animation: none; }
+}
+.card.has-bingo {
+border-color: var(--bingo);
+box-shadow: 0 0 0 3px var(--bingo-light), 0 5px 14px rgba(43, 36, 32, 0.18);
+}
+.card.has-bingo h3 {
+background: var(--bingo);
+}
+.bingo-badge {
+display: inline-block;
+margin-left: 10px;
+padding: 2px 10px;
+font-size: 0.6em;
+letter-spacing: 2px;
+vertical-align: middle;
+background: var(--parchment);
+color: var(--bingo);
+border-radius: 999px;
+box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
 .toc {
 text-align: center;
 margin: 0px auto 0; padding: 0px 15px 0; background: transparent;
@@ -669,7 +720,7 @@ gap: 3px;
 width: 100%;
 max-width: 100%;
 margin: 0 auto;
-padding: 0 6px;
+--grid-pad: 6px;
 }
 .cell {
 padding: 4px;
@@ -747,6 +798,11 @@ background: #fff !important;
 border-color: #000 !important;
 color: #000 !important;
 }
+.card.has-bingo { border-color: #000; box-shadow: none; }
+.card.has-bingo h3 { background: #fff; }
+.bingo-badge { color: #000; border: 1px solid #000; box-shadow: none; }
+.bingo-lines { filter: none; animation: none; }
+.bingo-lines line { stroke: #000; }
 .mark:not(:empty), .cell.claimed::before {
 background: transparent !important;
 box-shadow: none !important;
@@ -776,7 +832,7 @@ border: 2px solid #000 !important;
 <a href="#card-stephen">stephen</a>
 <a href="#card-streff">streff</a>
 </div>
-<div id="card-alec" class="card">
+<div id="card-alec" class="card ">
 <h3>alec</h3>
 <div class="grid">
 <div class="cell" data-key="alec_1_1">
@@ -844,7 +900,7 @@ Rob</span>
 </div>
 <div class="cell" data-key="alec_4_1">
 <span class="text">Jeff takes a jab at a contestant during a challenge</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="alec_4_2">
 <span class="text">Someone talks about modeling their gameplay like a previous player (by name)</span>
@@ -886,7 +942,7 @@ Kristin</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-andy" class="card">
+<div id="card-andy" class="card ">
 <h3>andy</h3>
 <div class="grid">
 <div class="cell" data-key="andy_1_1">
@@ -936,7 +992,7 @@ Jelly</span>
 </div>
 <div class="cell" data-key="andy_3_2">
 <span class="text">Tribe swap</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell free" data-key="andy_3_3">
 <span style="display:block; font-weight:bold;">&#39;&#39;The tribe has spoken&#39;&#39;</span>
@@ -966,7 +1022,7 @@ Jelly</span>
 <div class="cell loser" data-key="andy_4_4">
 <span class="text">Loser Pick:
 Jenna</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell jury" data-key="andy_4_5">
 <span class="text">Makes Jury:
@@ -983,7 +1039,7 @@ Rob</span>
 </div>
 <div class="cell" data-key="andy_5_3">
 <span class="text">Someone uses a new nickname for Jeff (e.g., Uncle Jeff)</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="andy_5_4">
 <span class="text">Someone says they want their kids to be proud of them</span>
@@ -996,7 +1052,7 @@ Rob</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-colin" class="card">
+<div id="card-colin" class="card ">
 <h3>colin</h3>
 <div class="grid">
 <div class="cell" data-key="colin_1_1">
@@ -1067,7 +1123,7 @@ Jenna</span>
 </div>
 <div class="cell" data-key="colin_4_2">
 <span class="text">Someone uses a new nickname for Jeff (e.g., Uncle Jeff)</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="colin_4_3">
 <span class="text">Tribal goes to rocks</span>
@@ -1106,7 +1162,7 @@ Ori</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-daryl" class="card">
+<div id="card-daryl" class="card ">
 <h3>daryl</h3>
 <div class="grid">
 <div class="cell" data-key="daryl_1_1">
@@ -1199,7 +1255,7 @@ Sharonda</span>
 </div>
 <div class="cell" data-key="daryl_5_2">
 <span class="text">Someone uses a new nickname for Jeff (e.g., Uncle Jeff)</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="daryl_5_3">
 <span class="text">Jeff advertises the Survivor Board Game</span>
@@ -1216,7 +1272,7 @@ Sharonda</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-david" class="card">
+<div id="card-david" class="card ">
 <h3>david</h3>
 <div class="grid">
 <div class="cell loser" data-key="david_1_1">
@@ -1234,7 +1290,7 @@ Eric</span>
 </div>
 <div class="cell" data-key="david_1_4">
 <span class="text">Tribe swap</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="david_1_5">
 <span class="text">Someone does a belly flop</span>
@@ -1326,7 +1382,7 @@ Jelly</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-dylan" class="card">
+<div id="card-dylan" class="card ">
 <h3>dylan</h3>
 <div class="grid">
 <div class="cell" data-key="dylan_1_1">
@@ -1436,7 +1492,7 @@ Brady</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-emma" class="card">
+<div id="card-emma" class="card ">
 <h3>emma</h3>
 <div class="grid">
 <div class="cell loser" data-key="emma_1_1">
@@ -1500,7 +1556,7 @@ Ori</span>
 </div>
 <div class="cell" data-key="emma_3_5">
 <span class="text">“Drop your Buffs”</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="emma_4_1">
 <span class="text">Someone lies about their occupation</span>
@@ -1546,7 +1602,7 @@ Alexis</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-ian" class="card">
+<div id="card-ian" class="card ">
 <h3>ian</h3>
 <div class="grid">
 <div class="cell" data-key="ian_1_1">
@@ -1563,7 +1619,7 @@ Alexis</span>
 </div>
 <div class="cell" data-key="ian_1_4">
 <span class="text">Jeff takes a jab at a contestant during a challenge</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="ian_1_5">
 <span class="text">Someone finds an idol or advantage during a reward</span>
@@ -1614,7 +1670,7 @@ Devin</span>
 <div class="cell loser" data-key="ian_4_1">
 <span class="text">Loser Pick:
 Jenna</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="ian_4_2">
 <span class="text">Medical evacuation</span>
@@ -1656,7 +1712,7 @@ Lewis</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-joey" class="card">
+<div id="card-joey" class="card ">
 <h3>joey</h3>
 <div class="grid">
 <div class="cell loser" data-key="joey_1_1">
@@ -1724,7 +1780,7 @@ Kristin</span>
 </div>
 <div class="cell" data-key="joey_4_1">
 <span class="text">Jeff takes a jab at a contestant during a challenge</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="joey_4_2">
 <span class="text">Someone plays a fake idol</span>
@@ -1766,7 +1822,7 @@ Mike</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-kathryn" class="card">
+<div id="card-kathryn" class="card ">
 <h3>kathryn</h3>
 <div class="grid">
 <div class="cell" data-key="kathryn_1_1">
@@ -1859,7 +1915,7 @@ Sharonda</span>
 </div>
 <div class="cell" data-key="kathryn_5_2">
 <span class="text">Jeff takes a jab at a contestant during a challenge</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="kathryn_5_3">
 <span class="text">Correct idol play (saves who would have gone home)</span>
@@ -1876,7 +1932,7 @@ Sharonda</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-kathy" class="card">
+<div id="card-kathy" class="card ">
 <h3>kathy</h3>
 <div class="grid">
 <div class="cell" data-key="kathy_1_1">
@@ -1986,7 +2042,7 @@ Rob</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-lisa" class="card">
+<div id="card-lisa" class="card ">
 <h3>lisa</h3>
 <div class="grid">
 <div class="cell" data-key="lisa_1_1">
@@ -2096,7 +2152,7 @@ Ori</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-maddie" class="card">
+<div id="card-maddie" class="card ">
 <h3>maddie</h3>
 <div class="grid">
 <div class="cell" data-key="maddie_1_1">
@@ -2180,7 +2236,7 @@ Kilby</span>
 </div>
 <div class="cell" data-key="maddie_4_5">
 <span class="text">Jeff takes a jab at a contestant during a challenge</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="maddie_5_1">
 <span class="text">Blurred out body part (nudity)</span>
@@ -2206,7 +2262,7 @@ Mike</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-nicole" class="card">
+<div id="card-nicole" class="card ">
 <h3>nicole</h3>
 <div class="grid">
 <div class="cell" data-key="nicole_1_1">
@@ -2270,7 +2326,7 @@ Patt</span>
 </div>
 <div class="cell" data-key="nicole_3_5">
 <span class="text">Someone uses a new nickname for Jeff (e.g., Uncle Jeff)</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="nicole_4_1">
 <span class="text">Someone makes fire without flint</span>
@@ -2316,7 +2372,7 @@ Lewis</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-rachel" class="card">
+<div id="card-rachel" class="card ">
 <h3>rachel</h3>
 <div class="grid">
 <div class="cell" data-key="rachel_1_1">
@@ -2385,7 +2441,7 @@ Ana</span>
 </div>
 <div class="cell" data-key="rachel_4_1">
 <span class="text">Jeff takes a jab at a contestant during a challenge</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="rachel_4_2">
 <span class="text">Someone makes fire without flint</span>
@@ -2426,7 +2482,7 @@ Ana</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-ryan" class="card">
+<div id="card-ryan" class="card ">
 <h3>ryan</h3>
 <div class="grid">
 <div class="cell" data-key="ryan_1_1">
@@ -2435,7 +2491,7 @@ Ana</span>
 </div>
 <div class="cell" data-key="ryan_1_2">
 <span class="text">Jeff takes a jab at a contestant during a challenge</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="ryan_1_3">
 <span class="text">Someone says &quot;meat shield&quot;</span>
@@ -2443,7 +2499,7 @@ Ana</span>
 </div>
 <div class="cell" data-key="ryan_1_4">
 <span class="text">“Drop your Buffs”</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="ryan_1_5">
 <span class="text">Someone says, “tree mail”</span>
@@ -2536,7 +2592,7 @@ Carter</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-sierra" class="card">
+<div id="card-sierra" class="card ">
 <h3>sierra</h3>
 <div class="grid">
 <div class="cell" data-key="sierra_1_1">
@@ -2586,7 +2642,7 @@ Eric</span>
 </div>
 <div class="cell" data-key="sierra_3_2">
 <span class="text">Tribe swap</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell free" data-key="sierra_3_3">
 <span style="display:block; font-weight:bold;">&#39;&#39;The tribe has spoken&#39;&#39;</span>
@@ -2624,7 +2680,7 @@ Jelly</span>
 </div>
 <div class="cell" data-key="sierra_5_1">
 <span class="text">“Drop your Buffs”</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="sierra_5_2">
 <span class="text">Someone gives their alliance a name</span>
@@ -2646,7 +2702,7 @@ Ori</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-sheila" class="card">
+<div id="card-sheila" class="card ">
 <h3>sheila</h3>
 <div class="grid">
 <div class="cell" data-key="sheila_1_1">
@@ -2756,7 +2812,7 @@ Maggie</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-stephen" class="card">
+<div id="card-stephen" class="card ">
 <h3>stephen</h3>
 <div class="grid">
 <div class="cell" data-key="stephen_1_1">
@@ -2848,7 +2904,7 @@ Patt</span>
 </div>
 <div class="cell" data-key="stephen_5_2">
 <span class="text">Jeff takes a jab at a contestant during a challenge</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="stephen_5_3">
 <span class="text">Tribal goes to rocks</span>
@@ -2866,8 +2922,11 @@ Jenna</span>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
-<div id="card-streff" class="card">
-<h3>streff</h3>
+<div id="card-streff" class="card has-bingo">
+<h3>
+streff
+<span class="bingo-badge">BINGO!</span>
+</h3>
 <div class="grid">
 <div class="cell" data-key="streff_1_1">
 <span class="text">Someone says, it’s time to “make a move”</span>
@@ -2938,7 +2997,7 @@ Kristin</span>
 </div>
 <div class="cell" data-key="streff_4_2">
 <span class="text">Tribe swap</span>
-<span class="mark"></span>
+<span class="mark">X</span>
 </div>
 <div class="cell" data-key="streff_4_3">
 <span class="text">Jeff says, &quot;You gotta dig deep!&quot;</span>
@@ -2973,6 +3032,7 @@ Mike</span>
 <span class="text">Jeff talks to the viewers at home</span>
 <span class="mark"></span>
 </div>
+<svg class="bingo-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="97" y1="3" x2="3" y2="97"></line></svg>
 </div>
 </div>
 <a href="#top" class="back-to-top">↑ Back to Top</a>
